@@ -11,9 +11,13 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Scanner;
+import java.io.ObjectOutputStream;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 public class ButtonFrame extends JFrame{
+    private String user;
+    private ChatData charData;
+    private ObjectOutputStream os;
     JList list = new JList();
     JLabel chat = new JLabel("Chat");
     JLabel users = new JLabel("Users");
@@ -38,6 +42,19 @@ public class ButtonFrame extends JFrame{
         setResizable(false);
         setAlwaysOnTop(true);
         setVisible(true);
+        send.setBounds(20, 20, 50, 50);
+
+
+        add(list);
+        add(chat);
+        add(users);
+        add(send);
+        add(exit);
+        add(message);
+        add(msgsfield);
+        add(listUsers);
+        add(scrollUsers);
+        add(scroll);
 
     }
 }
