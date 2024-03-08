@@ -4,16 +4,28 @@ import java.net.*;
 import java.util.*;
 
 public class ClientMain {
+    private static ArrayList<String> names = new ArrayList<>();
     public static void main(String[] args){
         try{
+            String name;
             Scanner sc = new Scanner(System.in);
-            System.out.println("Enter your name:");
-            String name
-            Socket socket = new Socket("127.0.0.1", 8001);
+            while(true){
+                System.out.println("Enter your name:");
+                name = sc.nextLine();
+                if(!names.contains(name)){
+                    break;
+                }
+            }
+            System.out.println("Enter the ip address of the server:");
+            String ip = sc.nextLine();
+            Socket socket = new Socket(ip, 8001);
             ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
             ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
-            CommandFromServer cfs = (CommandFromServer) is.readObject();
-            ButtonFrame frame;
+            ButtonFrame frame = new ButtonFrame(os, name);
+
+            ClientListener cl = new ClientListener(is, os, frame);
+            Thread t = new Thread(cl);
+            t.start();
         } catch(Exception e){
             e.printStackTrace();
         }

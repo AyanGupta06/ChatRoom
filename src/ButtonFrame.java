@@ -16,7 +16,6 @@ import java.io.ObjectOutputStream;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 public class ButtonFrame extends JFrame{
     private String user;
-    private ChatData charData;
     private ObjectOutputStream os;
     JList list = new JList();
     JLabel chat = new JLabel("Chat");
@@ -30,9 +29,8 @@ public class ButtonFrame extends JFrame{
 
     JScrollPane scroll = new JScrollPane (list, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
-    public ButtonFrame(ChatData chatData, ObjectOutputStream os, String user) {
+    public ButtonFrame(ObjectOutputStream os, String user) {
         super("Chat Room");
-        this.charData = chatData;
         this.os = os;
         this.user = user;
 
